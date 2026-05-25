@@ -134,7 +134,7 @@ function Hero() {
 
   // Film reel counter animation
   useEffect(() => {
-    const target = 247;
+    const target = 3;
     const interval = setInterval(() => {
       setCounter((prev) => {
         if (prev >= target) { clearInterval(interval); return target; }
@@ -197,7 +197,7 @@ function Hero() {
 
         <div className={`hero__stats hero__item ${loaded ? 'visible' : ''}`}>
           <div className="stat">
-            <span className="stat__number">3</span>
+            <span className="stat__number">{counter}</span>
             <span className="stat__label">Films Shot</span>
           </div>
           <div className="stat__divider" />
