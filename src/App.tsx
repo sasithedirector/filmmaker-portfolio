@@ -384,7 +384,7 @@ function About() {
 
           {/* Bio */}
           <div className="about__bio reveal">
-            <h3 className="about__name">[Your Name]</h3>
+            <h3 className="about__name">[Sasi Kaladhar ]</h3>
             <p className="about__tagline">Director · Writer · Cinematographer</p>
             <div className="about__text">
               <p>
@@ -552,7 +552,7 @@ function Footer() {
     <footer className="footer">
       <div className="footer__inner">
         <div className="footer__brand">
-          <span className="footer__logo">◈ Director</span>
+          <span className="footer__logo">◈ Sasi Kaldhar</span>
           <p>Crafting cinema that lingers.</p>
         </div>
         <div className="footer__links">
