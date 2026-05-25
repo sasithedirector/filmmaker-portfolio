@@ -24,10 +24,10 @@ interface Film {
 const FILMS: Film[] = [
   {
     id: 1,
-    title: 'Echoes of Silence',
+    title: 'Needhi naadhi oke Katha',
     year: '2024',
     role: 'Writer & Director',
-    genre: 'Drama / Thriller',
+    genre: 'Rom-Com',
     description: 'A deaf musician navigates a world of sound she can never hear, uncovering a conspiracy that threatens her city. Shot entirely in monochrome with a single color accent.',
     awards: ['Best Narrative Feature — Indie Film Fest 2024', 'Audience Choice — CineVision Awards'],
   },
@@ -80,7 +80,7 @@ function Navbar() {
       <div className="navbar__inner">
         <a className="navbar__logo" onClick={() => scrollTo('hero')}>
           <span className="navbar__logo-mark">◈</span>
-          <span className="navbar__logo-text">Director</span>
+          <span className="navbar__logo-text">Sasi Kaladhar</span>
         </a>
         <button className="navbar__hamburger" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
           <span className={`hamburger-line ${menuOpen ? 'open' : ''}`} />
