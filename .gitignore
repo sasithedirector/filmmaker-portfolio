@@ -5,3 +5,4 @@ dist
 .env
 .github
 deploy.sh
+public/videos/

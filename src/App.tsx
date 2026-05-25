@@ -32,7 +32,7 @@ const FILMS: Film[] = [
     genre: 'Rom-Com',
     description: '"Needhi Naadhi Okate Katha" is an emotional coming-of-age short film that explores love, friendship, memories, and the moments we often leave unspoken. Through two parallel journeys that unexpectedly reflect each other, the story captures the beauty of college life and the emotions that shape us forever. Sometimes, different people live the same story in different ways.',
     awards: ['2nd Best short Film — VJ FilmMania 2026'],
-    videoUrl: 'https://drive.google.com/file/d/15qeO3rnj4lId7bLGRbQliedtPf2-I_Yj/view?usp=drive_link',
+    videoUrl: '/videos/needhi-naadhi.mp4',
   },
   {
     id: 2,
@@ -270,6 +270,21 @@ function FilmCard({ film, index }: { film: Film; index: number }) {
       {film.videoUrl ? (() => {
         const isYouTube = film.videoUrl.includes('youtube.com') || film.videoUrl.includes('youtu.be');
         const isDrive = film.videoUrl.includes('drive.google.com');
+        const isLocal = film.videoUrl.startsWith('/');
+        if (isLocal) {
+          return (
+            <div className="film-card__visual film-card__visual--video">
+              <video
+                src={film.videoUrl}
+                title={film.title}
+                controls
+                preload="metadata"
+                className="film-card__video"
+              />
+              <div className="film-card__year-badge">{film.year}</div>
+            </div>
+          );
+        }
         let embedUrl = film.videoUrl;
         if (isYouTube) {
           embedUrl = film.videoUrl.replace('watch?v=', 'embed/');
