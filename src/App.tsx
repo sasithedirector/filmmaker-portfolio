@@ -32,7 +32,7 @@ const FILMS: Film[] = [
     genre: 'Rom-Com',
     description: '"Needhi Naadhi Okate Katha" is an emotional coming-of-age short film that explores love, friendship, memories, and the moments we often leave unspoken. Through two parallel journeys that unexpectedly reflect each other, the story captures the beauty of college life and the emotions that shape us forever. Sometimes, different people live the same story in different ways.',
     awards: ['2nd Best short Film — VJ FilmMania 2026'],
-    videoUrl: '/videos/needhi-naadhi.mp4',
+    videoUrl: './videos/needhi-naadhi.mp4',
   },
   {
     id: 2,
