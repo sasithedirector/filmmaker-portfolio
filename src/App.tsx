@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import React from 'react';
-import emailjs from '@emailjs/browser'; // ADD THIS
+
 import './css/global.css';
 import './css/hero.css';
 import './css/navbar.css';
@@ -27,37 +27,21 @@ const FILMS: Film[] = [
     id: 1,
     title: 'Needhi naadhi oke Katha',
     year: '2024',
-    role: 'Writer & Director',
+    role: 'Writer -  Director - editor & Cinematographer',
     genre: 'Rom-Com',
-    description: 'A deaf musician navigates a world of sound she can never hear, uncovering a conspiracy that threatens her city. Shot entirely in monochrome with a single color accent.',
+    description: '"Needhi Naadhi Okate Katha" is an emotional coming-of-age short film that explores love, friendship, memories, and the moments we often leave unspoken. Through two parallel journeys that unexpectedly reflect each other, the story captures the beauty of college life and the emotions that shape us forever. Sometimes, different people live the same story in different ways.',
     awards: ['Best Narrative Feature — Indie Film Fest 2024', 'Audience Choice — CineVision Awards'],
   },
   {
     id: 2,
-    title: 'The Last Signal',
+    title: 'The Guide',
     year: '2023',
-    role: 'Director',
-    genre: 'Sci-Fi / Mystery',
-    description: 'A deep-space radio operator receives a transmission that shouldn\'t exist — a voice from a civilization that died a thousand years ago. But the message is addressed to her by name.',
+    role: 'Director - Writer & Cinematographer',
+    genre: 'Fantasy / Drama',
+    description: 'Goutham Pardhasaaradhi, a continuation of Goutham’s journey from "Needhi Naadhi Okate Katha," is a student struggling with rejection, academic pressure, family expectations, and the problems of everyday life. When he reaches his lowest point, he discovers a new perspective that changes the way he sees himself and life. This story highlights how the Bhagavad Gita can provide guidance, help improve our mindset, and teach valuable lessons to face life’s challenges.',
     awards: ['Best Sci-Fi Short — Nebula Film Festival'],
   },
-  {
-    id: 3,
-    title: 'Borrowed Time',
-    year: '2022',
-    role: 'Writer & Director',
-    genre: 'Romance / Fantasy',
-    description: 'Two strangers discover they\'re living the same day on loop — but in different centuries. A meditation on fate, connection, and the courage to break cycles.',
-  },
-  {
-    id: 4,
-    title: 'Concrete Garden',
-    year: '2021',
-    role: 'Director & Cinematographer',
-    genre: 'Documentary',
-    description: 'An intimate portrait of urban farmers transforming abandoned lots into thriving green spaces across three cities. Four years in the making.',
-    awards: ['Best Documentary — Green Lens Film Festival'],
-  },
+  
 ];
 
 // ─── Navbar ─────────────────────────────────────────────
@@ -357,7 +341,7 @@ function About() {
 
   const skills = [
     'Directing', 'Screenwriting', 'Cinematography', 'Editing',
-    'Color Grading', 'Sound Design', 'Production Design', 'Visual FX',
+     'Production Design', 'Visual FX',
   ];
 
   return (
@@ -372,14 +356,7 @@ function About() {
           {/* Photo area */}
           <div className="about__photo" ref={photoRef}>
             <div className="photo-frame">
-              <div className="photo-frame__placeholder">
-                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
-                  <rect x="3" y="3" width="18" height="18" rx="2" />
-                  <circle cx="8.5" cy="8.5" r="1.5" />
-                  <path d="M21 15l-5-5L5 21" />
-                </svg>
-                <span>Your Photo</span>
-              </div>
+              <img src="./profile.jpg" alt="Sasi Kaladhar" className="photo-frame__img" />
               <div className="photo-frame__border" />
             </div>
             {/* Decorative element */}

@@ -37,25 +37,19 @@
   overflow: hidden;
 }
 
-.photo-frame__placeholder {
+.photo-frame__img {
   position: absolute;
   inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
   border-radius: 8px;
-  color: var(--text-muted);
-  font-size: 0.85rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  transition: transform 0.4s var(--ease-out);
 }
 
-.photo-frame__placeholder svg {
-  opacity: 0.3;
+.photo-frame:hover .photo-frame__img {
+  transform: scale(1.05);
 }
 
 .photo-frame__border {
