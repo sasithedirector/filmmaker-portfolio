@@ -270,7 +270,7 @@ function FilmCard({ film, index }: { film: Film; index: number }) {
       {film.videoUrl ? (() => {
         const isYouTube = film.videoUrl.includes('youtube.com') || film.videoUrl.includes('youtu.be');
         const isDrive = film.videoUrl.includes('drive.google.com');
-        const isLocal = film.videoUrl.startsWith('/');
+        const isLocal = film.videoUrl.startsWith('/') || film.videoUrl.startsWith('.');
         if (isLocal) {
           return (
             <div className="film-card__visual film-card__visual--video">
