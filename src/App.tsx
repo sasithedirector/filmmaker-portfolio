@@ -428,15 +428,17 @@ function Contact() {
     e.preventDefault();
     setStatus('sending');
     try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+      // Send via EmailJS (loaded via CDN in index.html)
+      emailjs.init('nmK-mvc6_di_MHsl3');
+      await emailjs.send('sasigsk', 'template_bqdjxe7', {
+        name: form.name,
+        email: form.email,
+        project: form.project || 'Not specified',
+        message: form.message,
       });
-      if (res.ok) setStatus('sent');
-      else setStatus('error');
+      setStatus('sent');
     } catch {
-      setStatus('sent'); // Demo mode — always succeeds
+      setStatus('error');
     }
   };
 
@@ -458,7 +460,7 @@ function Contact() {
               <div className="contact-card__icon">✉</div>
               <div>
                 <h4>Email</h4>
-                <p>hello@yourname.com</p>
+                <p>sasithedirector@gmail.com</p>
               </div>
             </div>
             <div className="contact-card">
@@ -485,7 +487,7 @@ function Contact() {
           </div>
 
           {/* Form */}
-          <form className={`contact__form reveal ${status === 'sent' ? 'form--sent' : ''}`} onSubmit={handleSubmit}>
+          <form className={`contact__form reveal ${status === 'sent' ? 'form--sent' : ''} ${status === 'error' ? 'form--error' : ''}`} onSubmit={handleSubmit}>
             {status === 'sent' ? (
               <div className="form-success">
                 <div className="form-success__icon">✓</div>
@@ -493,6 +495,15 @@ function Contact() {
                 <p>Thank you for reaching out. I'll get back to you within 48 hours.</p>
                 <button className="btn btn--ghost btn--sm" onClick={() => { setStatus('idle'); setForm({ name: '', email: '', project: '', message: '' }); }}>
                   Send Another
+                </button>
+              </div>
+            ) : status === 'error' ? (
+              <div className="form-success form-success--error">
+                <div className="form-success__icon">✕</div>
+                <h3>Sending Failed</h3>
+                <p>Something went wrong. Please try again or email me directly at sasithedirector@gmail.com</p>
+                <button className="btn btn--ghost btn--sm" onClick={() => setStatus('idle')}>
+                  Try Again
                 </button>
               </div>
             ) : (

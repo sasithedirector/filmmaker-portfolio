@@ -205,6 +205,12 @@
   line-height: 1.7;
 }
 
+/* ─── Error State ───────────────── */
+.form-success--error .form-success__icon {
+  background: rgba(220, 53, 69, 0.15);
+  color: #dc3545;
+}
+
 /* ─── Responsive ────────────────── */
 @media (max-width: 768px) {
   .contact__layout {
