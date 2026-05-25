@@ -197,17 +197,17 @@ function Hero() {
 
         <div className={`hero__stats hero__item ${loaded ? 'visible' : ''}`}>
           <div className="stat">
-            <span className="stat__number">{counter}</span>
+            <span className="stat__number">3</span>
             <span className="stat__label">Films Shot</span>
           </div>
           <div className="stat__divider" />
           <div className="stat">
-            <span className="stat__number">12</span>
+            <span className="stat__number">02</span>
             <span className="stat__label">Awards Won</span>
           </div>
           <div className="stat__divider" />
           <div className="stat">
-            <span className="stat__number">8+</span>
+            <span className="stat__number">2+</span>
             <span className="stat__label">Years Active</span>
           </div>
         </div>
