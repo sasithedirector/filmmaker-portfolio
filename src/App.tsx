@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import React from 'react';
+import emailjs from '@emailjs/browser'; // ADD THIS
 import './css/global.css';
 import './css/hero.css';
 import './css/navbar.css';
@@ -350,6 +351,9 @@ function Films() {
 // ─── About Section ──────────────────────────────────────
 function About() {
   const ref = useReveal<HTMLElement>();
+  const headerRef = useReveal<HTMLDivElement>();
+  const photoRef = useReveal<HTMLDivElement>();
+  const bioRef = useReveal<HTMLDivElement>();
 
   const skills = [
     'Directing', 'Screenwriting', 'Cinematography', 'Editing',
@@ -359,14 +363,14 @@ function About() {
   return (
     <section id="about" className="about" ref={ref}>
       <div className="section-inner">
-        <div className="section-header reveal">
+        <div ref={headerRef} className="section-header">
           <span className="section-tag">The Person Behind the Lens</span>
           <h2 className="section-title">About Me</h2>
         </div>
 
         <div className="about__layout">
           {/* Photo area */}
-          <div className="about__photo reveal">
+          <div className="about__photo" ref={photoRef}>
             <div className="photo-frame">
               <div className="photo-frame__placeholder">
                 <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
@@ -383,7 +387,7 @@ function About() {
           </div>
 
           {/* Bio */}
-          <div className="about__bio reveal">
+          <div className="about__bio" ref={bioRef}>
             <h3 className="about__name">[Sasi Kaladhar ]</h3>
             <p className="about__tagline">Director · Writer · Cinematographer</p>
             <div className="about__text">
@@ -421,6 +425,9 @@ function About() {
 // ─── Contact Section ────────────────────────────────────
 function Contact() {
   const ref = useReveal<HTMLElement>();
+  const headerRef = useReveal<HTMLDivElement>();
+  const infoRef = useReveal<HTMLDivElement>();
+  const formRef = useReveal<HTMLFormElement>();
   const [form, setForm] = useState({ name: '', email: '', project: '', message: '' });
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
 
@@ -428,8 +435,9 @@ function Contact() {
     e.preventDefault();
     setStatus('sending');
     try {
-      // Send via EmailJS (loaded via CDN in index.html)
-      emailjs.init('nmK-mvc6_di_MHsl3');
+      if (typeof emailjs === 'undefined') {
+        throw new Error('EmailJS not loaded');
+      }
       await emailjs.send('sasigsk', 'template_bqdjxe7', {
         name: form.name,
         email: form.email,
@@ -437,7 +445,8 @@ function Contact() {
         message: form.message,
       });
       setStatus('sent');
-    } catch {
+    } catch (err) {
+      console.error('Email send error:', err);
       setStatus('error');
     }
   };
@@ -445,7 +454,7 @@ function Contact() {
   return (
     <section id="contact" className="contact" ref={ref as React.RefObject<HTMLElement>}>
       <div className="section-inner">
-        <div className="section-header reveal">
+        <div ref={headerRef} className="section-header">
           <span className="section-tag">Let's Create Together</span>
           <h2 className="section-title">Get in Touch</h2>
           <p className="section-subtitle">
@@ -455,7 +464,7 @@ function Contact() {
 
         <div className="contact__layout">
           {/* Info */}
-          <div className="contact__info reveal">
+          <div className="contact__info" ref={infoRef}>
             <div className="contact-card">
               <div className="contact-card__icon">✉</div>
               <div>
@@ -487,7 +496,7 @@ function Contact() {
           </div>
 
           {/* Form */}
-          <form className={`contact__form reveal ${status === 'sent' ? 'form--sent' : ''} ${status === 'error' ? 'form--error' : ''}`} onSubmit={handleSubmit}>
+          <form ref={formRef} className={`contact__form ${status === 'sent' ? 'form--sent' : ''} ${status === 'error' ? 'form--error' : ''}`} onSubmit={handleSubmit}>
             {status === 'sent' ? (
               <div className="form-success">
                 <div className="form-success__icon">✓</div>
@@ -512,14 +521,14 @@ function Contact() {
                   <div className="form-group">
                     <label htmlFor="name">Your Name</label>
                     <input
-                      id="name" type="text" placeholder="John Doe" required
+                      id="name" type="text" placeholder="Sasi kaladhar" required
                       value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })}
                     />
                   </div>
                   <div className="form-group">
                     <label htmlFor="email">Email</label>
                     <input
-                      id="email" type="email" placeholder="john@example.com" required
+                      id="email" type="email" placeholder="sasithedirector@gmail.com" required
                       value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })}
                     />
                   </div>

@@ -9,7 +9,7 @@ declare module '*.webp';
 declare module '*.mp4';
 declare module '*.webm';
 
-// EmailJS global loaded via CDN
+// EmailJS global loaded via CDN in index.html
 declare const emailjs: {
   init(key: string): void;
   send(serviceId: string, templateId: string, templateParams: Record<string, string>): Promise<string>;
