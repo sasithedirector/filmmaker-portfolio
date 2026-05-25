@@ -32,6 +32,7 @@ const FILMS: Film[] = [
     genre: 'Rom-Com',
     description: '"Needhi Naadhi Okate Katha" is an emotional coming-of-age short film that explores love, friendship, memories, and the moments we often leave unspoken. Through two parallel journeys that unexpectedly reflect each other, the story captures the beauty of college life and the emotions that shape us forever. Sometimes, different people live the same story in different ways.',
     awards: ['2nd Best short Film — VJ FilmMania 2026'],
+    videoUrl: 'https://drive.google.com/file/d/15qeO3rnj4lId7bLGRbQliedtPf2-I_Yj/view?usp=drive_link',
   },
   {
     id: 2,
@@ -47,7 +48,7 @@ const FILMS: Film[] = [
     title: 'Krishnastami Documentary',
     year: '2025',
     role: 'Director - Writer',
-    genre: 'Fantasy / Drama',
+    genre: 'Documentary ',
     description: 'For Krishna Janmashtami in August 2025, we created a documentary for FOLK (ISKCON) as part of VJ TEATRO in our college. The documentary aimed to capture the spirit, devotion, cultural significance, and celebrations surrounding the occasion. Through storytelling, visuals, and creative presentation, our team worked together to showcase the essence of the festival while gaining valuable hands-on experience in filmmaking and content creation.',
     videoUrl: 'https://www.youtube.com/watch?v=C3WKUorZtDc',
   },
@@ -266,19 +267,29 @@ function FilmCard({ film, index }: { film: Film; index: number }) {
       </div>
 
       {/* Visual */}
-      {film.videoUrl ? (
-        <div className="film-card__visual film-card__visual--video">
-          <iframe
-            src={film.videoUrl.replace('watch?v=', 'embed/')}
-            title={film.title}
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            className="film-card__iframe"
-          />
-          <div className="film-card__year-badge">{film.year}</div>
-        </div>
-      ) : (
+      {film.videoUrl ? (() => {
+        const isYouTube = film.videoUrl.includes('youtube.com') || film.videoUrl.includes('youtu.be');
+        const isDrive = film.videoUrl.includes('drive.google.com');
+        let embedUrl = film.videoUrl;
+        if (isYouTube) {
+          embedUrl = film.videoUrl.replace('watch?v=', 'embed/');
+        } else if (isDrive && film.videoUrl.includes('/view')) {
+          embedUrl = film.videoUrl.replace(/\/view.*/, '/preview');
+        }
+        return (
+          <div className="film-card__visual film-card__visual--video">
+            <iframe
+              src={embedUrl}
+              title={film.title}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="film-card__iframe"
+            />
+            <div className="film-card__year-badge">{film.year}</div>
+          </div>
+        );
+      })() : (
         <div className={`film-card__visual bg-gradient-to-br ${gradients[index % gradients.length]}`}>
           <div className="film-card__visual-overlay">
             <div className="film-card__play-icon">
