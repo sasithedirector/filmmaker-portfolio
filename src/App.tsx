@@ -516,9 +516,8 @@ function Contact() {
 
             {/* Social links */}
             <div className="contact__social">
-              {['Vimeo', 'Instagram', 'Letterboxd', 'IMDb'].map((s) => (
-                <a key={s} className="social-link">{s}</a>
-              ))}
+              <a href="https://www.instagram.com/sashiikaaladhar?igsh=MW1sdnJwMG56cWQ3Yw==" className="social-link" target="_blank" rel="noopener noreferrer">Instagram</a>
+              <a href="https://wa.me/918520867176" className="social-link" target="_blank" rel="noopener noreferrer">Whatsapp</a>
             </div>
           </div>
 
